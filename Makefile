@@ -33,10 +33,11 @@ all: $(OUTPUT).nds
 # Empaquetado final para DSi/DS
 $(OUTPUT).nds: $(BUILD)/$(OUTPUT).elf
 	@echo "Generando ROM: $@"
-	@ndstool -c $@ -9 $< -b icon.bmp "N\$DS64;TuNombre;Proyecto DSi"
+	@ndstool -c $@ -9 $< "N$$DS64;Andhriup;Proyecto DSi"
 
 $(BUILD)/$(OUTPUT).elf: $(OBJS)
-	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
+	@mkdir -p $(BUILD)
+	$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
 $(BUILD)/%.o: $(SOURCES)/%.c
 	@mkdir -p $(BUILD)

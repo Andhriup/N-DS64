@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Usamos el contenedor oficial de devkitPro para NDS/DSi
     container: devkitpro/devkitarm:latest
 
     steps:
@@ -17,19 +16,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          # Aquí instalas las librerías específicas que necesite tu proyecto (ej: libnds, grit, etc.)
-          # dkp-pacman es el gestor de paquetes de devkitPro
-          dkp-pacman -Syu --noconfirm nds-dev
+        # Añadimos -y para asegurar que dkp-pacman esté actualizado
+        run: dkp-pacman -Syyu --noconfirm nds-dev
 
       - name: Compile project
-        run: |
-          # Generalmente se usa make para estos proyectos
-          make
+        # Usamos bash explícitamente para evitar problemas de shell en el contenedor
+        run: make
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dsi-app-build
-          # Ajusta la extensión según lo que genere tu Makefile (.nds o .dsi)
+          # Nombre limpio para el ZIP de descarga
+          name: DSI-Build-Artifact
+          # El path busca cualquier archivo .nds generado
           path: "*.nds"
+          # Opcional: para que no falle si no encuentra el archivo
+          if-no-files-found: error
