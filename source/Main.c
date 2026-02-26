@@ -10,7 +10,7 @@ int main(void) {
     consoleSelect(consoleGetDefault());
     printf("\n\n   N$DS64 Proyecto DSi\n");
     printf("   -------------------\n");
-    printf("   Hola desde GitHub Actions!\n");
+    printf("   Hola mundo!\n");
 
     // Imprimir en la pantalla inferior (opcional)
     printf("\n\n   Presiona START para salir.");
