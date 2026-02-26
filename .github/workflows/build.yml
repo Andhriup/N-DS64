@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         # Añadimos -y para asegurar que dkp-pacman esté actualizado
-        run: dkp-pacman -Syy --noconfirm nds-dev
+        run: dkp-pacman -Syy --noconfirm nds-dev dsi-dev
 
       - name: Compile project
         # Usamos bash explícitamente para evitar problemas de shell en el contenedor
