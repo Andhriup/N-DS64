@@ -9,20 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Esta imagen ya incluye devkitARM, libnds y las herramientas de NDS/DSi
     container: devkitpro/devkitarm:latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        # nds-dev instala las reglas, libnds instala las librerías de hardware
-        run: dkp-pacman -Syy --noconfirm nds-dev libnds
+      # ELIMINADO: dkp-pacman -Syy (Esto causaba el error 403)
 
       - name: Compile project
-        run:
-          export DEVKITPRO=/opt/devkitpro
-          export DEVKITARM=$DEVKITPRO/devkitARM
+        run: |
+          # Las variables de entorno ya están configuradas en el contenedor oficial
           make
         shell: bash
 
@@ -30,5 +28,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: DSI-Build-Artifact
-          path: "**/*.nds" # Busca en todas las subcarpetas por si acaso
+          path: "**/*.nds"
           if-no-files-found: error
