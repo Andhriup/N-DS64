@@ -1,45 +1,40 @@
-# --- Nombre del proyecto ---
+# --- Configuración del Proyecto ---
 TARGET      := NDS64
-OUTPUT      := NDS64
-
-# --- Directorios ---
 BUILD       := build
 SOURCES     := source
 INCLUDES    := include
-DEVKITPRO   ?= /opt/devkitpro
-LIBNDS      := $(DEVKITPRO)/libnds
 
-# --- Configuración devkitARM ---
+# --- Importar Reglas de devkitPro ---
+# Esto define automáticamente LIBNDS, DEVKITARM y las rutas de calico.h
 ifeq ($(strip $(DEVKITARM)),)
-$(error "DEVKITARM no está definido. Revisa tu instalación.")
+$(error "DEVKITARM no está definido. Revisa tu entorno.")
 endif
 
 include $(DEVKITARM)/ds_rules
 
-# --- Flags y Librerías ---
-# Añadimos las rutas de cabeceras de libnds y de tu proyecto
+# --- Flags Corregidos ---
+# -DARM9 es vital para que nds.h sepa qué arquitectura usar
+# Usamos $(LIBNDS) que es la variable oficial de devkitPro
 ARCH    := -mthumb -mthumb-interwork
-CFLAGS  := -g -Wall -O2 $(ARCH) -DARM9 -D__NDS__ \
-           -I$(INCLUDES) -I$(LIBNDS)/include -I$(LIBNDS)/include/sys/
+CFLAGS  := $(ARCH) -O2 -Wall -DARM9 -D__NDS__ \
+           -I$(INCLUDES) -I$(LIBNDS)/include
 
-# Añadimos la ruta de las librerías (.a) para el enlazador
-LDFLAGS := -g $(ARCH) -L$(LIBNDS)/lib -Wl,-Map,$(BUILD)/$(OUTPUT).map
-LIBS    := -lnds9 
+LDFLAGS := $(ARCH) -L$(LIBNDS)/lib
+LIBS    := -lnds9
 
-# --- Objetos ---
-CFILES      := $(wildcard $(SOURCES)/*.c)
-OBJS        := $(CFILES:$(SOURCES)/%.c=$(BUILD)/%.o)
+# --- Lógica de Compilación ---
+CFILES  := $(wildcard $(SOURCES)/*.c)
+OBJS    := $(CFILES:$(SOURCES)/%.c=$(BUILD)/%.o)
 
 .PHONY: all clean
 
-all: $(OUTPUT).nds
+all: $(TARGET).nds
 
-# Generar el binario final .nds
-$(OUTPUT).nds: $(BUILD)/$(OUTPUT).elf
-	@echo "Generando ROM: $@"
-	ndstool -c $@ -9 $< -b $(DEVKITPRO)/libnds/icon.bmp "NDS64;Andhriup;Proyecto DSi"
+$(TARGET).nds: $(BUILD)/$(TARGET).elf
+	@echo "Creando ROM..."
+	$(NDSTOOL) -c $@ -9 $<
 
-$(BUILD)/$(OUTPUT).elf: $(OBJS)
+$(BUILD)/$(TARGET).elf: $(OBJS)
 	@mkdir -p $(BUILD)
 	$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
@@ -48,5 +43,4 @@ $(BUILD)/%.o: $(SOURCES)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "Limpiando..."
-	rm -rf $(BUILD) $(OUTPUT).nds *.elf *.map
+	@rm -rf $(BUILD) $(TARGET).nds
