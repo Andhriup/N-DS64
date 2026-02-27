@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         # nds-dev instala las reglas, libnds instala las librerías de hardware
-        run: dkp-pacman -Syu --noconfirm nds-dev libnds
+        run: dkp-pacman -Syy --noconfirm nds-dev libnds
 
       - name: Compile project
         run:
