@@ -1,26 +1,26 @@
-name: Build DSI App
+name: Buiname: Build DSi Project
 
-on: 
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Esta imagen ya incluye devkitARM, libnds y las herramientas de NDS/DSi
-    container: devkitpro/devkitarm:latest
-
+    container: devkitpro/devkitarm:latest  # Usamos la imagen oficial
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ELIMINADO: dkp-pacman -Syy (Esto causaba el error 403)
+      - name: Install DSi dependencies
+        run: |
+          # Actualiza pacman e instala las reglas y librerías de NDS
+          dkp-pacman -Syu --noconfirm
+          dkp-pacman -S --noconfirm nds-dev
 
       - name: Compile project
         run: |
-          # Las variables de entorno ya están configuradas en el contenedor oficial
+          # Aseguramos que las variables de entorno se reconozcan
+          export DEVKITPRO=/opt/devkitpro
+          export DEVKITARM=$DEVKITPRO/devkitARM
           make
         shell: bash
 
