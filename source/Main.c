@@ -14,7 +14,7 @@ int main(void) {
     printf("\n\n   Presiona START para salir.");
 
     while(1) {
-        // Escuchar la entrada de botones
+        // Escuchar la entrada de 
         scanKeys();
         int keys = keysDown();
 

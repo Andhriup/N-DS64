@@ -1,13 +1,13 @@
 # --- Nombre del proyecto ---
 TARGET      := NDS64
-# Usamos un nombre de archivo seguro para el binario final
 OUTPUT      := NDS64
 
 # --- Directorios ---
 BUILD       := build
 SOURCES     := source
 INCLUDES    := include
-GRAPHICS    := gfx
+DEVKITPRO   ?= /opt/devkitpro
+LIBNDS      := $(DEVKITPRO)/libnds
 
 # --- Configuración devkitARM ---
 ifeq ($(strip $(DEVKITARM)),)
@@ -17,23 +17,27 @@ endif
 include $(DEVKITARM)/ds_rules
 
 # --- Flags y Librerías ---
+# Añadimos las rutas de cabeceras de libnds y de tu proyecto
 ARCH    := -mthumb -mthumb-interwork
-CFLAGS  := -g -Wall -O2 $(ARCH) -D__NDS__ -I$(INCLUDES)
-LDFLAGS := -g $(ARCH) -Wl,-Map,$(BUILD)/$(OUTPUT).map
-LIBS    := -libnds
+CFLAGS  := -g -Wall -O2 $(ARCH) -D__NDS__ \
+           -I$(INCLUDES) -I$(LIBNDS)/include
+
+# Añadimos la ruta de las librerías (.a) para el enlazador
+LDFLAGS := -g $(ARCH) -L$(LIBNDS)/lib -Wl,-Map,$(BUILD)/$(OUTPUT).map
+LIBS    := -lnds9  # Nota: Normalmente es -lnds9 para el procesador principal
 
 # --- Objetos ---
-CFILES		:= $(wildcard $(SOURCES)/*.c)
-OBJS		:= $(CFILES:$(SOURCES)/%.c=$(BUILD)/%.o)
+CFILES      := $(wildcard $(SOURCES)/*.c)
+OBJS        := $(CFILES:$(SOURCES)/%.c=$(BUILD)/%.o)
 
 .PHONY: all clean
 
 all: $(OUTPUT).nds
 
-# Empaquetado final para DSi/DS
+# Generar el binario final .nds
 $(OUTPUT).nds: $(BUILD)/$(OUTPUT).elf
 	@echo "Generando ROM: $@"
-	@ndstool -c $@ -9 $< "N$$DS64;Andhriup;Proyecto DSi"
+	ndstool -c $@ -9 $< -b $(DEVKITPRO)/libnds/icon.bmp "NDS64;Andhriup;Proyecto DSi"
 
 $(BUILD)/$(OUTPUT).elf: $(OBJS)
 	@mkdir -p $(BUILD)
@@ -41,8 +45,8 @@ $(BUILD)/$(OUTPUT).elf: $(OBJS)
 
 $(BUILD)/%.o: $(SOURCES)/%.c
 	@mkdir -p $(BUILD)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "Limpiando..."
-	@rm -rf $(BUILD) $(OUTPUT).nds
+	rm -rf $(BUILD) $(OUTPUT).nds *.elf *.map
