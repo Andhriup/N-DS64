@@ -14,7 +14,7 @@ ifeq ($(strip $(DEVKITARM)),)
 $(error "DEVKITARM no está definido. Revisa tu instalación.")
 endif
 
-include $(DEVKITARM)
+include $(DEVKITARM)/ds_rules
 
 # --- Flags y Librerías ---
 ARCH    := -mthumb -mthumb-interwork
