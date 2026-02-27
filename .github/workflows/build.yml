@@ -16,19 +16,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        # Añadimos -y para asegurar que dkp-pacman esté actualizado
-        run: sudo dkp-pacman -Syu --noconfirm nds-dev
+        # nds-dev instala las reglas, libnds instala las librerías de hardware
+        run: dkp-pacman -Syu --noconfirm nds-dev libnds
 
       - name: Compile project
-        # Usamos bash explícitamente para evitar problemas de shell en el contenedor
-        run: make
+        run:
+          export DEVKITPRO=/opt/devkitpro
+          export DEVKITARM=$DEVKITPRO/devkitARM
+          make
+        shell: bash
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          # Nombre limpio para el ZIP de descarga
           name: DSI-Build-Artifact
-          # El path busca cualquier archivo .nds generado
-          path: "*.nds"
-          # Opcional: para que no falle si no encuentra el archivo
+          path: "**/*.nds" # Busca en todas las subcarpetas por si acaso
           if-no-files-found: error
