@@ -23,8 +23,8 @@ jobs:
 
       - name: Compile project
         run: |
-          export DEVKITPRO=/opt/devkitpro
-          export DEVKITARM=$DEVKITPRO/devkitARM
+          export DEVKITPRO="/opt/devkitpro"
+          export DEVKITARM="$DEVKITPRO/devkitARM"
           make -j
         shell: bash
 
