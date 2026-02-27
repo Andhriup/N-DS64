@@ -16,7 +16,7 @@ jobs:
 
       - name: Install DSi dependencies
         run: |
-          sudo dkp-pacman -Syu --noconfirm
+          sudo dkp-pacman -Syy --noconfirm
           sudo dkp-pacman -S --noconfirm nds-dev libnds
 
       - name: Compile project
