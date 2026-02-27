@@ -20,7 +20,7 @@ include $(DEVKITARM)/ds_rules
 # Añadimos las rutas de cabeceras de libnds y de tu proyecto
 ARCH    := -mthumb -mthumb-interwork
 CFLAGS  := -g -Wall -O2 $(ARCH) -D__NDS__ -DARM9 \
-           -I$(INCLUDES) -I$(LIBNDS)/include
+           -I$(INCLUDES) -I$(LIBNDS)/include -I$(LIBNDS)/include/sys/
 
 # Añadimos la ruta de las librerías (.a) para el enlazador
 LDFLAGS := -g $(ARCH) -L$(LIBNDS)/lib -Wl,-Map,$(BUILD)/$(OUTPUT).map
