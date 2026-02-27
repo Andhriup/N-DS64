@@ -1,4 +1,4 @@
-name: Buiname: Build DSi Project
+name: Build DSi Project
 
 on: [push, pull_request]
 
