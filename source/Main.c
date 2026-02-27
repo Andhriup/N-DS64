@@ -2,8 +2,6 @@
 #include <stdio.h>
 
 int main(void) {
-    // Inicializar las consolas de texto en ambas pantallas
-    // Esto configura el motor 2D para mostrar texto simple
     consoleDemoInit();
 
     // Seleccionar la pantalla superior para escribir

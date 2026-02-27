@@ -20,7 +20,7 @@ include $(DEVKITARM)/ds_rules
 ARCH    := -mthumb -mthumb-interwork
 CFLAGS  := -g -Wall -O2 $(ARCH) -D__NDS__ -I$(INCLUDES)
 LDFLAGS := -g $(ARCH) -Wl,-Map,$(BUILD)/$(OUTPUT).map
-LIBS    := -lnds9
+LIBS    := -libnds
 
 # --- Objetos ---
 CFILES		:= $(wildcard $(SOURCES)/*.c)

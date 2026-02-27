@@ -5,23 +5,28 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: devkitpro/devkitarm:latest  # Usamos la imagen oficial
+    container: devkitpro/devkitarm:latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
+        name: Install pacman
+        run wget -U "dkp-apt" https://apt.devkitpro.org/install-devkitpro-pacman
+   chmod +x ./install-devkitpro-pacman
+   sudo ./install-devkitpro-pacman
 
       - name: Install DSi dependencies
         run: |
           # Actualiza pacman e instala las reglas y librerías de NDS
           dkp-pacman -Syu --noconfirm
-          dkp-pacman -S --noconfirm nds-dev
+          dkp-pacman -S --noconfirm nds-dev libnds
 
       - name: Compile project
         run: |
           # Aseguramos que las variables de entorno se reconozcan
           export DEVKITPRO=/opt/devkitpro
           export DEVKITARM=$DEVKITPRO/devkitARM
-          make
+          make -j
         shell: bash
 
       - name: Upload Build Artifact
