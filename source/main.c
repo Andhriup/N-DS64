@@ -1,4 +1,5 @@
-#include <main.h>
+#include "main.h"
+#include <nds.h>
 #include <stdio.h>
 
 int main(void) {
