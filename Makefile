@@ -80,16 +80,15 @@ icon.bmp : ../icon.png
 
 #--- Reglas de Compilación ---
 %.o : %.c
-	@echo Compilando $(notdir $<)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo $(notdir $<)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 %.o : %.cpp
-	@echo Compilando $(notdir $<)
-	$(CXX) $(CXXFLAGS) -$(INCLUDE) -c $< -o $@
+	@echo $(notdir $<)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 %.o : %.bin
-	@echo Procesando binario $(notdir $<)
-	$(bin2o)
+	@echo $(notdir $<) $bin2o)
 
 -include $(DEPENDS)
 
