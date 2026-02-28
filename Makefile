@@ -25,11 +25,11 @@ GRAPHICS     := gfx
 #---------------------------------------------------------------------------------
 ARCH        :=        -march=armv5te -mtune=arm946e-s -mthumb
 
-CFLAGS        :=        -g -Wall -O2 -ffunction-sections -fdata-sections\
-                        $(ARCH) -DARM9
+CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
 
-CFLAGS        +=        $(INCLUDE) -DARM9
-CXXFLAGS        := $(CFLAGS) -fno-rtti -fno-exceptions
+CPPFLAGS := $(CFLAGS)
+
+CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS        :=        -g $(ARCH)
 LDFLAGS        =        -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
@@ -115,7 +115,7 @@ icon.bmp : ../icon.png
 #--- Reglas de Compilación ---
 %.o : %.c
 	@echo Compilando $(notdir $<)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(includes) -c $< -o $@
 
 %.o : %.cpp
 	@echo Compilando $(notdir $<)
