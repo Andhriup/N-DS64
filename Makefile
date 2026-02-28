@@ -5,7 +5,7 @@ endif
 
 include $(DEVKITARM)/ds_rules
 
-TARGET   := "N$DS64"
+TARGET   := N-DS64
 BUILD    := build
 SOURCES  := source gfx
 INCLUDES   := include
