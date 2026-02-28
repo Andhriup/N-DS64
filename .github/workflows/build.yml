@@ -9,12 +9,11 @@ jobs:
     env:
       DEVKITPRO: /opt/devkitpro
       DEVKITARM: /opt/devkitpro/devkitARM
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Install DSi dependencies
+      - name: Instal dependencies
         run: |
           dkp-pacman -Scc
           dkp-pacman -Syy --noconfirm
@@ -25,6 +24,14 @@ jobs:
           export PATH=$DEVKITARM/bin:$PATH
           make -j$(nproc)
         shell: bash
+        
+      - name: Listar archivos de devkitPro (Mapa de carpetas)
+        run: |
+          echo "--- EXPLORANDO /opt/devkitpro ---"
+          find /opt/devkitpro -maxdepth 4 -not -path '*/.*'
+          echo "--- BUSCANDO default.elf EN TODO EL SISTEMA ---"
+          find / -name "default.elf" 2>/dev/null || echo "No se encontró el archivo en ningún lado"
+
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
