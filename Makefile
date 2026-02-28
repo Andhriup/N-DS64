@@ -105,7 +105,7 @@ DEPENDS        :=        $(OFILES:.o=.d)
 # main targets
 #----------------------------------------------------------------------------------
 # Convertimos el PNG a un formato temporal que ndstool entienda
-icon.bin: icon.png
+icon.bin : icon.png
 	grit icon.png -g -gb -gB4 -gz0 -p -ftb -fh!
 $(OUTPUT).nds	:	$(OUTPUT).elf
 	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bin "NS64;Andhriup;Proyecto DSi"
