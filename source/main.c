@@ -1,3 +1,6 @@
+#ifndef ARM9
+#define ARM9
+#endif
 #include <main.h>
 #include <stdio.h>
 
