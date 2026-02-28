@@ -1,3 +1,5 @@
+#ifndef ARM9
+#define ARM9
 #include <nds.h>
 #ifndef MAIN_H   // Guarda para evitar que el archivo se incluya dos veces
 #define MAIN_H
