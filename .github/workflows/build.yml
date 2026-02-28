@@ -18,7 +18,12 @@ jobs:
 
       - name: Compile project
         run: |
-          export PATH=$DEVKITARM/bin:$PATH
+          export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
+          export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
+          make clean
+          make -j$(nproc)
+          find . -name "*.nds"
+
           make clean
           echo "Archivos en source/:"
           ls source

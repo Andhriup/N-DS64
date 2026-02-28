@@ -99,36 +99,34 @@ clean:
 
 else
 
-DEPENDS        :=        $(OFILES:.o=.d)
+DEPENDS	:=	$(OFILES:.o=.d)
 
-#---------------------------------------------------------------------------------
-# main targets
-#----------------------------------------------------------------------------------
-icon.bmp : ../icon.png
-	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
+#--- Reglas Principales ---
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
-$(OUTPUT).elf        :        $(OFILES)
+
+$(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@)
 	$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
 
-#---------------------------------------------------------------------------------
-%.o : %.bin
+icon.bmp : ../icon.png
+	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
+
+#--- Reglas de Compilación ---
 %.o : %.c
-	@echo $(notdir $<)
+	@echo Compilando $(notdir $<)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 %.o : %.cpp
-	@echo $(notdir $<)
+	@echo Compilando $(notdir $<)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-# -----------------------------------------------
 
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
+%.o : %.bin
+	@echo Procesando binario $(notdir $<)
 	$(bin2o)
-
 
 -include $(DEPENDS)
 
-#---------------------------------------------------------------------------------------
 endif
+
 #---------------------------------------------------------------------------------------
