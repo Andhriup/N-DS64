@@ -23,7 +23,6 @@ jobs:
           echo "--- Listado de archivos generados ---"
           find . -name "*.nds"
         shell: bash
-        shell: bash
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
