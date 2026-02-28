@@ -49,12 +49,12 @@ endif
 export OFILES    :=    $(BINFILES:.bin=.o) \
               $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
-
 export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                                         $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
                                         -I$(CURDIR)/$(BUILD) \
                                         -I$(CALICO)/include/
+
+export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 .PHONY: $(BUILD) clean
 $(BUILD):
