@@ -81,7 +81,7 @@ icon.bmp : ../icon.png
 #--- Reglas de Compilación ---
 %.o : %.c
 	@echo Compilando $(notdir $<)
-	$(CC) $(CPPFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 %.o : %.cpp
 	@echo Compilando $(notdir $<)
