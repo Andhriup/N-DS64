@@ -21,9 +21,9 @@ CFLAGS  += $(INCLUDE)
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS    :=    -g $(ARCH)
-LDFLAGS    =    -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+LDFLAGS    := -specs=ds_arm9.specs -g $(ARCH)
 
-LIBS    := -lcalico_ds9 -lnds9
+LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)/lib/
 
@@ -73,7 +73,8 @@ $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@)
-	$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) -Wl,--start-group $(LIBS) -Wl,--end-group -o $@
+	$(LD) $(LDFLAGS) -Wl,-Map,$(notdir $@).map $(OFILES) $(LIBPATHS) -Wl,--start-group $(LIBS) -Wl,--end-group -o $@
+
 
 icon.bmp : ../icon.png
 	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
