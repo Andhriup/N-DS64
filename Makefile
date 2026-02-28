@@ -5,7 +5,7 @@ endif
 
 include $(DEVKITARM)/ds_rules
 
-TARGET   := 'N$DS64'
+TARGET   := 'N_DS64'
 BUILD    := build
 SOURCES  := source gfx
 INCLUDES   := include
@@ -51,7 +51,6 @@ export OFILES    :=    $(BINFILES:.bin=.o) \
 
 export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                                         $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-                                        -I$(DEVKITPRO)/calico/ \
                                         -I$(CURDIR)/$(BUILD)
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
