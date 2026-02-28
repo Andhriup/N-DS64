@@ -20,6 +20,9 @@ jobs:
         run: |
           export PATH=$DEVKITARM/bin:$PATH
           make -j$(nproc)
+          echo "--- Listado de archivos generados ---"
+          find . -name "*.nds"
+        shell: bash
         shell: bash
 
       - name: Upload Build Artifact
