@@ -15,7 +15,6 @@ jobs:
         
       - name: Instal dependencies
         run: |
-          dkp-pacman -S --noconfirm
           dkp-pacman -S --noconfirm nds-dev libnds
 
       - name: Compile project
