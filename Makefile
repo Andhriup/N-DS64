@@ -14,7 +14,7 @@ GRAPHICS   := gfx
 
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
 
-CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
+CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
 
 CFLAGS  += $(INCLUDE) 
 
@@ -81,11 +81,11 @@ icon.bmp : ../icon.png
 #--- Reglas de Compilación ---
 %.o : %.c
 	@echo $(notdir $<)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -DARM9 -c $< -o $@
 
 %.o : %.cpp
 	@echo $(notdir $<)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -DARM9 -c $< -o $@
 
 %.o : %.bin
 	@echo $(notdir $<) $bin2o)
