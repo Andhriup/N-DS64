@@ -13,7 +13,7 @@ DATA   := data
 GRAPHICS   := gfx
 CALICO   := $(DEVKITPRO)/calico
 
-ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
+ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb -D__NDS__
 
 CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
 CFLAGS  += $(INCLUDE)
