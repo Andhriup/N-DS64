@@ -32,7 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/main'
         with:
-          files: **/*.nds
+          files: "**/*.nds"
           tag_name: latest
           name: "N$DS64 Ultima Compilación"
           body: "nothing"
