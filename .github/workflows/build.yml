@@ -20,13 +20,7 @@ jobs:
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
-          find / -name calico.h 2>/dev/null.
-          make clean
-          echo "Archivos en source/:"
-          ls source
-          echo "Archivos en include/:"
-          ls include
-          make -p | grep -E "^(CFILES|OFILES|SOURCES|VPATH) ="
+          find . -maxdepth 3 -not -path '*/.*'
           make -j$(nproc) V=1
           echo "--- Listado de archivos generados ---"
           find . -name "*.nds"
