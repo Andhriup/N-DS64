@@ -1,16 +1,10 @@
-#ifndef ARM9
 #define ARM9
-#include <nds.h>
-#ifndef MAIN_H   // Guarda para evitar que el archivo se incluya dos veces
+#ifndef ARM9
 #define MAIN_H
-
-// Definición de constantes para N$DS64
+#include <nds.h>
 #define VERSION "0.1a"
 #define SCREEN_WIDTH 256
 #define SCREEN_HEIGHT 192
-
-// Prototipos de funciones (declaramos que existen)
 void inicializarConsola(void);
 void mostrarMenu(void);
-
 #endif
