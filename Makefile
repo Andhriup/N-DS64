@@ -11,16 +11,11 @@ SOURCES  := source gfx
 INCLUDES   := include
 DATA   := data
 GRAPHICS   := gfx
-CALICO   := $(DEVKITPRO)/CALICO
-
-export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
-                                        $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-                                        -I$(CURDIR)/$(BUILD) \
-                                        -I$(CALICO)/include/
+CALICO   := $(DEVKITPRO)/calico
 
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
 
-CFLAGS  := -DARM9 -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
+CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
 CFLAGS  += $(INCLUDE)
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
@@ -55,6 +50,11 @@ export OFILES    :=    $(BINFILES:.bin=.o) \
               $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
+
+export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+                                        $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+                                        -I$(CURDIR)/$(BUILD) \
+                                        -I$(CALICO)/include/
 
 .PHONY: $(BUILD) clean
 $(BUILD):
