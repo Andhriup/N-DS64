@@ -9,6 +9,8 @@ jobs:
     env:
       DEVKITPRO: /opt/devkitpro
       DEVKITARM: /opt/devkitpro/devkitARM
+        permissions:
+          contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
