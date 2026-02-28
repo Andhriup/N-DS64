@@ -20,6 +20,7 @@ jobs:
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
+          find / -name calico.h 2>/dev/null.
           make clean
           make -j$(nproc)
           find . -name "*.nds"
