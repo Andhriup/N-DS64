@@ -27,7 +27,7 @@ ARCH        :=        -march=armv5te -mtune=arm946e-s -mthumb
 
 CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
 
-CPPFLAGS := -DARM9 $(CFLAGS)
+CFLAGS  += $(INCLUDE) -DARM9
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
