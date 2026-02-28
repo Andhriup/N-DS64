@@ -74,15 +74,12 @@ $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 $($(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) $(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) -Wl,--start-group $(LIBS) -Wl,--end-group -Wl,-Map,$(notdir $@).map
 
-
-
 icon.bmp : ../icon.png
 	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
 
 #--- Reglas de Compilación ---
 %.o : %.c
-	@printf "Compilando: [ $< ] -> [ $@ ]\n"
-	@printf "Flags usados: [ $(CFLAGS) ]\n"
+	@echo $(notdir $<)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
