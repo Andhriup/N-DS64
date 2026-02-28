@@ -1,10 +1,5 @@
 #ifndef MAIN_H   // Guarda para evitar que el archivo se incluya dos veces
 #define MAIN_H
-
-#ifndef ARM9
-#define ARM9
-#endif
-
 #include <nds.h> // Incluimos las librerías de la DS aquí para tenerlas en todo el proyecto
 
 // Definición de constantes para N$DS64
