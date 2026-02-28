@@ -105,7 +105,7 @@ DEPENDS        :=        $(OFILES:.o=.d)
 # main targets
 #---------------------------------------------------------------------------------
 $(OUTPUT).nds        :         $(OUTPUT).elf
-	ndstool -c $@ -9 $< -b icon.bmp 'N$DS64;Andhriup;emulador en proceso'
+	ndstool -c $@ -9 $< -7 $(DEVKITPRO)/libnds/default.elf -b icon.bmp 'N$DS64;Andhriup;emulador en proceso'
 $(OUTPUT).elf        :        $(OFILES)
 
 #---------------------------------------------------------------------------------
