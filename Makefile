@@ -104,8 +104,8 @@ DEPENDS        :=        $(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 # main targets
 #----------------------------------------------------------------------------------
-icon.bmp : icon.png
-	grit icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
+icon.bmp : ../icon.png
+	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 $(OUTPUT).elf        :        $(OFILES)
