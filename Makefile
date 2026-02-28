@@ -14,7 +14,7 @@ include $(DEVKITARM)/ds_rules
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET                :=        $(shell basename $(CURDIR))
+TARGET                :=        'N$DS64'
 BUILD                :=        build
 SOURCES      := source gfx
 INCLUDES     := include
@@ -105,6 +105,7 @@ DEPENDS        :=        $(OFILES:.o=.d)
 # main targets
 #---------------------------------------------------------------------------------
 $(OUTPUT).nds        :         $(OUTPUT).elf
+	ndstool -c $@ -9 $< -b icon.bmp 'N$DS64;Andhriup;emulador en proceso'
 $(OUTPUT).elf        :        $(OFILES)
 
 #---------------------------------------------------------------------------------
