@@ -68,13 +68,12 @@ clean:
 else
 DEPENDS        :=        $(OFILES:.o=.d)
 
-#--- Reglas Principales ---
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@)
-	$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
+	$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) -Wl,--start-group $(LIBS) -Wl,--end-group -o $@
 
 icon.bmp : ../icon.png
 	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
