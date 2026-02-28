@@ -5,16 +5,17 @@ endif
 
 include $(DEVKITARM)/ds_rules
 
-TARGET   := 'N_DS64'
+TARGET   := 'N$DS64'
 BUILD    := build
 SOURCES  := source gfx
 INCLUDES   := include
 DATA   := data
 GRAPHICS   := gfx
+CALICO   := $(DEVKITPRO)/calico
 
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
 
-CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
+CFLAGS  := -DARM9 -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
 
 CFLAGS  += $(INCLUDE) 
 
@@ -51,7 +52,8 @@ export OFILES    :=    $(BINFILES:.bin=.o) \
 
 export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                                         $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-                                        -I$(CURDIR)/$(BUILD)
+                                        -I$(CURDIR)/$(BUILD) \
+                                        $(CALICO)/
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
@@ -69,7 +71,7 @@ DEPENDS        :=        $(OFILES:.o=.d)
 
 #--- Reglas Principales ---
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
-	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
+	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@)
@@ -81,11 +83,11 @@ icon.bmp : ../icon.png
 #--- Reglas de Compilación ---
 %.o : %.c
 	@echo $(notdir $<)
-	$(CC) $(CFLAGS) -DARM9 -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 %.o : %.cpp
 	@echo $(notdir $<)
-	$(CXX) $(CXXFLAGS) -DARM9 -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 %.o : %.bin
 	@echo $(notdir $<) $bin2o)
