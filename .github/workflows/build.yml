@@ -22,10 +22,6 @@ jobs:
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
           find / -name calico.h 2>/dev/null.
           make clean
-          make -j$(nproc)
-          find . -name "*.nds"
-
-          make clean
           echo "Archivos en source/:"
           ls source
           echo "Archivos en include/:"
