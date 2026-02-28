@@ -1,5 +1,5 @@
-#define ARM9
-#ifndef ARM9
+#define DARM9
+#ifndef DARM9
 #define MAIN_H
 #include <nds.h>
 #define VERSION "0.1a"

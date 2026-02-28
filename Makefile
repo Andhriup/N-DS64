@@ -25,9 +25,9 @@ GRAPHICS     := gfx
 #---------------------------------------------------------------------------------
 ARCH        :=        -march=armv5te -mtune=arm946e-s -mthumb
 
-CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -ARM9
+CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
 
-CPPFLAGS := -ARM9 $(CFLAGS)
+CPPFLAGS := -DARM9 $(CFLAGS)
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
