@@ -32,3 +32,14 @@ jobs:
           name: 'N$DS64'
           path: "**/*.nds"
           if-no-files-found: warn
+      - name: Release NDS Rom
+        uses: softprops/action-gh-release@v1
+        if: github.ref == 'refs/heads/main'
+        with:
+          files: ./*.nds
+          tag_name: latest
+          name: "N-DS64 Ultima Compilación"
+          body: "nothing"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
