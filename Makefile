@@ -16,7 +16,7 @@ CALICO   := $(DEVKITPRO)/calico
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
 
 CFLAGS  := -DARM9 -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
-
+CFLAGS  += $(INCLUDE) - DARM9
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
@@ -55,7 +55,6 @@ export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                                         $(CALICO)/include/
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
-CFLAGS  += $(INCLUDE) - DARM9
 
 .PHONY: $(BUILD) clean
 $(BUILD):
