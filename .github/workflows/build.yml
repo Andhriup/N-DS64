@@ -14,16 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Install pacman
-        run: |
-          wget -U "dkp-apt" https://apt.devkitpro.org/install-devkitpro-pacman
-          chmod +x ./install-devkitpro-pacman
-          ./install-devkitpro-pacman
-
       - name: Install DSi dependencies
         run: |
-          sudo dkp-pacman -Sy --noconfirm
-          sudo dkp-pacman -S --noconfirm nds-dev libnds
+          dkp-pacman -Scc
+          dkp-pacman -Syy --noconfirm
+          dkp-pacman -S --noconfirm nds-dev libnds
 
       - name: Compile project
         run: |
