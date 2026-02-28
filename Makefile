@@ -109,6 +109,8 @@ icon.bmp : ../icon.png
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
 	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 $(OUTPUT).elf        :        $(OFILES)
+	@echo Enlazando $(notdir $@)
+	$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
 
 #---------------------------------------------------------------------------------
 %.o : %.bin
