@@ -105,7 +105,7 @@ DEPENDS        :=        $(OFILES:.o=.d)
 # main targets
 #----------------------------------------------------------------------------------
 $(OUTPUT).nds	:	$(OUTPUT).elf
-             	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
+	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 $(OUTPUT).elf        :        $(OFILES)
 
 #---------------------------------------------------------------------------------
