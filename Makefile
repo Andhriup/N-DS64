@@ -104,8 +104,13 @@ DEPENDS        :=        $(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-$(OUTPUT).nds        :         $(OUTPUT).elf
-	ndstool -c $@ -9 $< -7 $(DEVKITPRO)/libnds/bin/default.elf -b icon.bmp 'N$DS64;Andhriup;emulador en proceso'
+ARM7_BUSCADO := $(shell find $(DEVKITPRO) -name "default.elf" | head -n 1)
+
+$(OUTPUT).nds	:	$(OUTPUT).elf
+	@echo "------------------------------------------"
+	@echo "Ruta encontrada para ARM7: $(ARM7_BUSCADO)"
+	@echo "------------------------------------------"
+	ndstool -c $@ -9 $< -7 "$(ARM7_BUSCADO)" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 $(OUTPUT).elf        :        $(OFILES)
 
 #---------------------------------------------------------------------------------
