@@ -25,7 +25,7 @@ LDFLAGS    =    -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS    := -lcalico_ds9 -lnds9
 
-LIBDIRS    :=    $(LIBNDS)
+LIBDIRS    :=    $(LIBNDS) $(CALICO)/lib/
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
