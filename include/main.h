@@ -1,4 +1,3 @@
-#define ARM9
 #include <nds.h>
 #ifndef MAIN_H
 #define MAIN_H
