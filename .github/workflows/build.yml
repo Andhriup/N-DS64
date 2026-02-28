@@ -19,14 +19,6 @@ jobs:
           dkp-pacman -Syy --noconfirm
           dkp-pacman -S --noconfirm nds-dev libnds
 
-      - name: Listar archivos de devkitPro (Mapa de carpetas)
-        run: |
-          echo "--- EXPLORANDO /opt/devkitpro ---"
-          find /opt/devkitpro -maxdepth 4 -not -path '*/.*'
-          echo "--- BUSCANDO default.elf EN TODO EL SISTEMA ---"
-          find / -name "default.elf" 2>/dev/null || echo "No se encontró el
-          archivo en ningún lado"
-
       - name: Compile project
         run: |
           export PATH=$DEVKITARM/bin:$PATH

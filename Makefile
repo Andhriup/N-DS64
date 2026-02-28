@@ -103,14 +103,9 @@ DEPENDS        :=        $(OFILES:.o=.d)
 
 #---------------------------------------------------------------------------------
 # main targets
-#---------------------------------------------------------------------------------
-ARM7_BUSCADO := $(shell find $(DEVKITPRO) -name "default.elf" | head -n 1)
-
+#----------------------------------------------------------------------------------
 $(OUTPUT).nds	:	$(OUTPUT).elf
-	@echo "------------------------------------------"
-	@echo "Ruta encontrada para ARM7: $(ARM7_BUSCADO)"
-	@echo "------------------------------------------"
-	ndstool -c $@ -9 $< -7 "$(ARM7_BUSCADO)" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
+             	ndstool -c $@ -9 $< -7 "$(DEVKITPRO)/calico/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
 $(OUTPUT).elf        :        $(OFILES)
 
 #---------------------------------------------------------------------------------
