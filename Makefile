@@ -119,7 +119,7 @@ icon.bmp : ../icon.png
 
 %.o : %.cpp
 	@echo Compilando $(notdir $<)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(includes) -c $< -o $@
 
 %.o : %.bin
 	@echo Procesando binario $(notdir $<)
