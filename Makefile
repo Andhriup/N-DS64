@@ -16,7 +16,7 @@ CALICO   := $(DEVKITPRO)/calico
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb
 
 CFLAGS  := -DARM9 -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH)
-CFLAGS  += $(INCLUDE) - DARM9
+CFLAGS  += $(INCLUDE) -DARM9
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
@@ -52,7 +52,7 @@ export OFILES    :=    $(BINFILES:.bin=.o) \
 export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                                         $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
                                         -I$(CURDIR)/$(BUILD) \
-                                        $(CALICO)/include/
+                                        -I$(CALICO)/include/
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
