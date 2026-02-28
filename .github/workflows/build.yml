@@ -20,6 +20,8 @@ jobs:
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
+          find /opt/devkitpro/calico/lib -name "*.a"
+
           make -j$(nproc) V=1
           echo "--- Listado de archivos generados ---"
           find . -name "*.nds"
