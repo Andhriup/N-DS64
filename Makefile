@@ -80,7 +80,9 @@ endif
 export OFILES    :=    $(BINFILES:.bin=.o) \
               $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE := $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)), $(foreach dir $(LIBDIRS) -I$(dir)/include) -I$(CURDIR)/$(BUILD)
+export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+                                        $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+                                        -I$(CURDIR)/$(BUILD)
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
@@ -94,6 +96,7 @@ clean:
 	@rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba
 
 else
+DEPENDS        :=        $(OFILES:.o=.d)
 
 #--- Reglas Principales ---
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
@@ -118,5 +121,7 @@ icon.bmp : ../icon.png
 %.o : %.bin
 	@echo Procesando binario $(notdir $<)
 	$(bin2o)
+
+-include $(DEPENDS)
 
 endif
