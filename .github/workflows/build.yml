@@ -19,9 +19,10 @@ jobs:
       - name: Compile project
         run: |
           export PATH=$DEVKITARM/bin:$PATH
-          make -j$(nproc)
+          make clean
           echo "Archivos en source/:"
           ls source
+          echo "Archivos en include/:"
           ls include
           make V=1
           echo "--- Listado de archivos generados ---"
