@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "main.h"
 
-#ifdef __cplusplus
 extern "C" {
 #endif
     int __dsimode = 1;
@@ -10,7 +9,6 @@ extern "C" {
     void __libnds_exit(void) {}
     void* __secure_area__ = NULL;
     void initSystem(void) {
-#ifdef __cplusplus
 }
 #endif
 int main(void) {
