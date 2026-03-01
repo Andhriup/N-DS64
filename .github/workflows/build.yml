@@ -20,7 +20,7 @@ jobs:
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
-          find . -maxdepth 2 -not -path '*/.*'
+          find . -maxdepth 5 -not -path '*/.*'
           make -j$(nproc) V=1
         shell: bash
 
