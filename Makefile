@@ -13,9 +13,9 @@ DATA   := data
 GRAPHICS   := gfx
 CALICO   := $(DEVKITPRO)/calico
 
-ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb -D__NDS__
+ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb -D__NDS__ -D__NDSi__
 
-CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
+CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9 -DARM9i
 CFLAGS  +=  -MMD -MP $(INCLUDE)
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
@@ -23,7 +23,7 @@ CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS    :=    -g $(ARCH)
 LDFLAGS    := -specs=ds_arm9.specs -g $(ARCH)
 
-LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc -lnds9
+LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
@@ -69,7 +69,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
-	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi"
+	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi" -hd
 	
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
