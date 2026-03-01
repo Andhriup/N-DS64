@@ -21,7 +21,7 @@ CFLAGS  +=  -MMD -MP $(INCLUDE)
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS    :=    -g $(ARCH)
-LDFLAGS        =        -specs=../ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+LDFLAGS        =        -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS    := -lcalico_ds9 -lnds9 lfat4
 
@@ -69,7 +69,6 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf
-	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -hd
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
