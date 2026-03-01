@@ -75,6 +75,7 @@ $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
 	$(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) -Wl,--start-group $(LIBS) -Wl,--end-group -Wl,-Map,$(notdir $@).map
 
+
 icon.bmp : ../icon.png
 	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
 
