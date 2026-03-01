@@ -68,7 +68,7 @@ clean:
 else
 DEPENDS        :=        $(OFILES:.o=.d)
 
-$(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
+$(OUTPUT).nds	:	$(OUTPUT).elf
 	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" "NS64;Andhriup;Proyecto DSi" -hd
 
 $(OUTPUT).elf	:	$(OFILES)
