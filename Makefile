@@ -69,10 +69,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf icon.bmp
-	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -b icon.bmp "NS64;Andhriup;Proyecto DSi" -hd
-
-icon.bmp : ../icon.png
-	grit ../icon.png -g -gb -gB4 -gz0 -p -ftb -fh! -o icon.bmp
+	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" "NS64;Andhriup;Proyecto DSi" -hd
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
