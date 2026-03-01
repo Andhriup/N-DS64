@@ -1,10 +1,6 @@
 #include <nds.h>
 #include <stdio.h>
 #include "main.h"
-int __dsimode() {}
-void __secure_area__() {}
-void __libnds_mpu_setup() {}
-void initSystem(void) {}
 int main(void) {
     consoleDemoInit();
     printf("\n\n   N-DS64 Proyecto DSi\n");
