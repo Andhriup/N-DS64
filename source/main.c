@@ -2,7 +2,7 @@
 #include "main.h"
 #include <stdio.h>
 #ifdef __cplusplus
-extern "C" 
+extern "C" {
 #endif
     int __dsimode = 1;
     void __libnds_mpu_setup() {}
@@ -11,7 +11,7 @@ extern "C"
     void initSystem(void)
 #ifdef __cplusplus
 #endif
-int main(void) {
+int main(void) 
     consoleDemoInit();
     consoleSelect(consoleGetDefault());
     printf("\n\n   N$DS64 Proyecto DSi\n");
