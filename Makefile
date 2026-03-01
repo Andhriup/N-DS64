@@ -23,7 +23,7 @@ CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS    :=    -g $(ARCH)
 LDFLAGS        =        -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS    := -lcalico_ds9 -lnds9 lfat
+LIBS    := -lcalico_ds9 -lnds9
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
