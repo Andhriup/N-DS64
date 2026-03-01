@@ -16,14 +16,14 @@ CALICO   := $(DEVKITPRO)/calico
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb -D__NDS__
 
 CFLAGS  := -g -Wall -O2 -ffunction-sections -fdata-sections $(ARCH) -DARM9
-CFLAGS  += $(INCLUDE)
+CFLAGS  +=  -MMD -MP $(INCLUDE)
 
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS    :=    -g $(ARCH)
-LDFLAGS    := -specs=ds_arm9i.specs -g $(ARCH)
+LDFLAGS    := -specs=ds_arm9.specs -g $(ARCH)
 
-LIBS    := -lcalico_ds9 -lnds9i -lc -lgcc
+LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)/lib/
 
@@ -89,7 +89,8 @@ icon.bmp : ../icon.png
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 %.o : %.bin
-	@echo $(notdir $<) $(bin2o)
+	@echo $(notdir $<)
+	@bin2s $< | $(AS) $(ASFLAGS) -o $@
 
 -include $(DEPENDS)
 
