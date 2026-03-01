@@ -1,8 +1,9 @@
 #include <nds.h>
 #include <stdio.h>
 #include "main.h"
+int __dsimode(1) {}
 void __secure_area__() {}
-void __libnds_mpu_setup () {}
+void __libnds_mpu_setup() {}
 void initSystem(void) {}
 int main(void) {
     consoleDemoInit();
