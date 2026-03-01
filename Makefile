@@ -23,7 +23,7 @@ CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS    :=    -g $(ARCH)
 LDFLAGS        =        -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS    := -lcalico_ds9 -lnds9 -lnds9
+LIBS    := -lcalico_ds9 -lnds9 -lc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
@@ -72,7 +72,8 @@ $(OUTPUT).nds	:	$(OUTPUT).elf
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
-	$(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) $(LIBS)
+	$(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) -Wl,--start-group $(LIBS) -Wl,--end-group
+
 
 #--- Reglas de Compilación ---
 %.o : %.c
