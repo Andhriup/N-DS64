@@ -8,9 +8,7 @@ extern "C" {
     void __libnds_mpu_setup() {}
     void __libnds_exit() {}
     void* __secure_area__ = NULL;
-    void initSystem(void) {
-        cpuStart(0); 
-    }
+    void initSystem(void)
 #ifdef __cplusplus
 }
 #endif
