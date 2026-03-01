@@ -72,7 +72,7 @@ $(OUTPUT).nds	:	$(OUTPUT).elf
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
-	$(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) $(LIBS) 
+	$(LD) $(LDFLAGS) $(LIBPATHS) -o $@ $(OFILES) -WL ,--START-GROUP $(LIBS) -WL ,--END-GROUP
 
 #--- Reglas de Compilación ---
 %.o : %.c
