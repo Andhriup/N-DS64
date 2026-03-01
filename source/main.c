@@ -4,7 +4,7 @@
 #include <nds.h>
 #include "main.h"
 #include <stdio.h>
-
+int __dsimode = 1;
 int main(void) {
     consoleDemoInit();
     consoleSelect(consoleGetDefault());
