@@ -2,7 +2,7 @@
 #include "main.h"
 #include <stdio.h>
 #ifdef __cplusplus
-extern "C" {
+extern "C" 
 #endif
     int __dsimode = 1;
     void __libnds_mpu_setup() {}
@@ -10,7 +10,6 @@ extern "C" {
     void* __secure_area__ = NULL;
     void initSystem(void)
 #ifdef __cplusplus
-}
 #endif
 int main(void) {
     consoleDemoInit();
