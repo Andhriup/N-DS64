@@ -1,10 +1,19 @@
-#ifndef ARM9
-#define ARM9
-#endif
 #include <nds.h>
 #include "main.h"
 #include <stdio.h>
-int __dsimode = 1;
+#ifdef __cplusplus
+extern "C" {
+#endif
+    int __dsimode = 1;
+    void __libnds_mpu_setup() {}
+    void __libnds_exit() {}
+    void* __secure_area__ = NULL;
+    void initSystem(void) {
+        cpuStart(0); 
+    }
+#ifdef __cplusplus
+}
+#endif
 int main(void) {
     consoleDemoInit();
     consoleSelect(consoleGetDefault());

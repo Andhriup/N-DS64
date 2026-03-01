@@ -21,9 +21,9 @@ CFLAGS  +=  -MMD -MP $(INCLUDE)
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS    :=    -g $(ARCH)
-LDFLAGS    := -specs=ds_arm9i.specs -g $(ARCH)
+LDFLAGS    := -specs=ds_arm9.specs -g $(ARCH)
 
-LIBS    := LIBS := -lcalico_ds9 -lfat -lnds9 -lc -lgcc
+LIBS    := -lcalico_ds9 -lfat -lnds9 -lc -lgcc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
