@@ -6,51 +6,47 @@
 extern "C" {
 #endif
 
-    // Símbolos para modo DSi y enlazador
+    // Esto activa los 16MB de RAM en DSi
     int __dsimode = 1;
 
+    // Símbolos mínimos para que el compilador de 2026 esté contento
     void __libnds_mpu_setup(void) {}
     void __libnds_exit(void) {}
     void* __secure_area__ = NULL;
 
-    // --- ¡AQUÍ FALTABAN LAS LLAVES! ---
+    // Dejamos initSystem vacío para que no interfiera, 
+    // libnds ya hace el trabajo pesado por detrás.
     void initSystem(void) {
-        irqInit();
-        irqEnable(IRQ_VBLANK);
-        fifoInit();
+        // No es necesario llamar a irqInit o fifoInit aquí en versiones nuevas
     }
 
 #ifdef __cplusplus
-} // Cerramos el extern "C"
+}
 #endif
 
-// --- EL MAIN DEBE IR FUERA DEL BLOQUE EXTERN "C" O BIEN CERRADO ---
-
 int main(void) {
-    // Inicializar consola de texto
+    // Inicializar consola de texto en la pantalla inferior (por defecto)
     consoleDemoInit();
-    consoleSelect(consoleGetDefault());
 
-    printf("\n\n   N$DS64 Proyecto DSi\n");
+    printf("\n\n   N-DS64 Proyecto DSi\n");
     printf("   -------------------\n");
-    printf("   Hola mundo!\n");
     
-    // Verificación de hardware
+    // Comprobamos si el hardware nos da los 16MB
     if (isDSiMode()) {
-        printf("   Corriendo en modo DSi\n");
+        printf("   Hardware: Nintendo DSi\n");
+        printf("   Estado:   133MHz / 16MB RAM\n");
     } else {
-        printf("   Corriendo en modo DS\n");
+        printf("   Hardware: Nintendo DS\n");
+        printf("   Estado:   67MHz / 4MB RAM\n");
     }
 
     printf("\n\n   Presiona START para salir.");
 
     while(1) {
-        scanKeys();
-        int keys = keysDown();
-        
-        if (keys & KEY_START) break;
-        
         swiWaitForVBlank();
+        
+        scanKeys();
+        if (keysDown() & KEY_START) break;
     }
 
     return 0;
