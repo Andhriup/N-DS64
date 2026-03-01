@@ -23,9 +23,9 @@ CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS    :=    -g $(ARCH)
 LDFLAGS    := -specs=ds_arm9.specs -g $(ARCH)
 
-LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc
+LIBS    := -lcalico_ds9 -lnds9 -lc -lgcc -lnds9
 
-LIBDIRS    :=    $(LIBNDS) $(CALICO)/lib/
+LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
