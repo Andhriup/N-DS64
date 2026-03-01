@@ -69,7 +69,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf
-	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" "NS64;Andhriup;Proyecto DSi" -hd
+	ndstool -c $@ -9 $< -7 "$(CALICO)/bin/ds7_sphynx.elf" -hd -t "N-DS64;Andhriup;Proyecto DSi" 
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
