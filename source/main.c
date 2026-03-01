@@ -1,6 +1,10 @@
 #include <nds.h>
 #include <stdio.h>
 #include "main.h"
+int __dsimode=1;
+extern "C" void initSystem(void) {
+    cpuStartTiming(0); 
+}
 int main(void) {
     consoleDemoInit();
     printf("\n\n   N-DS64 Proyecto DSi\n");
