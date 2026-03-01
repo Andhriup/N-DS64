@@ -3,14 +3,13 @@
 #include "main.h"
 
 extern "C" {
-#endif
     int __dsimode = 1;
     void __libnds_mpu_setup(void) {}
     void __libnds_exit(void) {}
     void* __secure_area__ = NULL;
-    void initSystem(void) {
-}
+    void initSystem(void) {}
 #endif
+}
 int main(void) {
     consoleDemoInit();
     printf("\n\n   N-DS64 Proyecto DSi\n");
