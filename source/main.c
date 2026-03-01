@@ -1,8 +1,11 @@
 #include <nds.h>
 #include <stdio.h>
 #include "main.h"
-int __dsimode=1;
-extern "C" void initSystem(void) {
+int __dsimode = 1;
+int __secure_area__ = 0;
+void __libnds_mpu_setup(void) {}
+void __libnds_exit(void) {}
+void initSystem(void) {
     cpuStartTiming(0); 
 }
 int main(void) {
