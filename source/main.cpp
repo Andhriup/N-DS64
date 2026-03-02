@@ -21,7 +21,7 @@ void Vblank() {
     frame++;
 }
 
-int main(void) {
+main(void) {
     // Inicializa el hardware y el modo DSi
     consoleDemoInit();
 
