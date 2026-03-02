@@ -48,11 +48,11 @@ else
     export LD    :=    $(CXX)
 endif
 
-export OFILES   := $(BINFILES))\
+export OFILES   := $(BINFILES)\
                    $(PNGFILES:.png=.o)\
                    $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE := $(foreach dir,../$(INCLUDES) -I$(dir)
+export INCLUDE := $(foreach dir,../$(INCLUDES)) -I$(dir)
            -I$(LIBNDS)/include \
            -I$(CALICO)/include \
            -I$(BUILD)
