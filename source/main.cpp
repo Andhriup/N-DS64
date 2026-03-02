@@ -1,6 +1,5 @@
 #include <nds.h>
 #include <stdio.h>
-#include "main.h"
 
 extern "C" {
     int __dsimode       = 1;
@@ -10,6 +9,8 @@ extern "C" {
     void __libnds_exit(void) { }
     void initSystem(void) {
         cpuStartTiming(0);
+        irqInit();
+        irqEnable(IRQ_VBLANK);
     }
 }
 static volatile int frame = 0;
@@ -17,14 +18,14 @@ void Vblank() {
     frame++;
 }
 int main(void) {
+  while{
     irqSet(IRQ_VBLANK, Vblank);
     consoleDemoInit();
     printf("N-DS64 Proyecto DSi");
     printf("   -------------------");
     printf("   Hardware: Nintendo DSi");
-    printf("   Estado:   133MHz / 16MB RAM", frame);
+    printf("   Estado:   133MHz / 16MB RAM %d", frame);
     printf("Presiona START para salir.");
-    while(1) {
         swiWaitForVBlank();
         scanKeys();
         if (keysDown() & KEY_START) break;
