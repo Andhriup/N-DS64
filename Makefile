@@ -69,7 +69,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf
-	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf 
+	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf -b icon.png "N-DS64;Proyecto DSi;AI"
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
