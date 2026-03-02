@@ -8,7 +8,7 @@ extern "C" {
 
     void __libnds_mpu_setup(void) { }
     void __libnds_exit(void) { }
-
+}
 static volatile int frame = 0;
 
 void Vblank() {
