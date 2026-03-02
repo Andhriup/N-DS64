@@ -7,7 +7,6 @@ void __libnds_mpu_setup(void) {}
 void __libnds_exit(void) {}
 void initSystem(void) {
     cpuStartTiming(0); 
-}
 int main(void) {
     consoleDemoInit();
     printf("\n\n   N-DS64 Proyecto DSi\n");
@@ -25,4 +24,5 @@ int main(void) {
     }
 
     return 0;
+}
 }
