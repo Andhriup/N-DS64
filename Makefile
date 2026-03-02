@@ -50,6 +50,7 @@ export OFILES    :=    $(BINFILES:.bin=.o) \
               $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
 export INCLUDE := $(foreach dir,$(INCLUDES),-I$(dir)) \
+           -I$(INCLUDES) \
            -I$(LIBNDS)/include \
            -I$(CALICO)/include \
            -I$(BUILD)
