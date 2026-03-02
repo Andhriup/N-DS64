@@ -1,4 +1,4 @@
-name: Build DSi Project
+name: N-DS64 project
 
 on: [push, pull_request]
 
@@ -24,12 +24,13 @@ jobs:
           make -j$(nproc) V=1
         shell: bash
 
-      - name: Upload Build Artifact
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: 'N-DS64'
           path: "**/*.nds"
           if-no-files-found: warn
+         
       - name: Release NDS Rom
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/main'

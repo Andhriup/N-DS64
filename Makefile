@@ -69,6 +69,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf
+	ndstool -c $(TARGET).nds -7 $(TARGET).elf
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
