@@ -23,7 +23,7 @@ CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS    :=    -g $(ARCH)
 LDFLAGS        =        -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS    := -lcalico_ds9 -lnds9 -lc
+LIBS    := -lnds9 -lcalico_ds9 -lc
 
 LIBDIRS    :=    $(LIBNDS) $(CALICO)
 
@@ -49,10 +49,10 @@ endif
 export OFILES    :=    $(BINFILES:.bin=.o) \
               $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE        :=        $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
-                                        $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-                                        -I$(CURDIR)/$(BUILD) \
-                                        -I$(CALICO)/include/
+export INCLUDE := $(foreach dir,$(INCLUDES),-I$(dir)) \
+           -I$(LIBNDS)/include \
+           -I$(CALICO)/include \
+           -I$(BUILD)
 
 export LIBPATHS    :=    $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
