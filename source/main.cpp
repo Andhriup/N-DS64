@@ -22,7 +22,7 @@ int main(void) {
     printf("N-DS64 Proyecto DSi");
     printf("   -------------------");
     printf("   Hardware: Nintendo DSi");
-    printf("   Estado:   133MHz / 16MB RAM");
+    printf("   Estado:   133MHz / 16MB RAM", frame);
     printf("Presiona START para salir.");
     while(1) {
         swiWaitForVBlank();
