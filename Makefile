@@ -32,7 +32,7 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 
 export OUTPUT    :=    $(CURDIR)/$(TARGET)
 
-export VPATH    :=    $(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) $(CURDIR),$(CURDIR)/$(subst /,,$(dir $(ICON)))\
+export VPATH    :=    $(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) $(CURDIR) $(CURDIR)/$(subst /,,$(dir $(ICON)))\
 export DEPSDIR    :=    $(CURDIR)/$(BUILD)
 
 CFILES      :=    $(foreach dir,$(SOURCES),$(notdir $(wildcard $(CURDIR)/$(dir)/*.c)))
