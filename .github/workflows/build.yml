@@ -15,15 +15,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Debug
+        run: |
+          find DEVKITPRO -maxdepth 5 -not -path '*/.*'
 
       - name: Compile project
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
           export PATH=$DEVKITARM/bin:$DEVKITPRO/bin:$PATH
-          find . -maxdepth 5 -not -path '*/.*'
           make -j$(nproc) V=1
         shell: bash
-
+        
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
