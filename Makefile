@@ -52,7 +52,7 @@ export OFILES   := $(BINFILES)\
                    $(PNGFILES:.png=.o)\
                    $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE := $(foreach dir,../$(INCLUDES),$(CURDIR)/$(dir))
+export INCLUDE := $(foreach dir,../$(INCLUDES),$(CURDIR)/$(dir)) \
            -I$(LIBNDS)/include \
            -I$(CALICO)/include \
            -I$(BUILD)
