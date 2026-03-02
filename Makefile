@@ -83,7 +83,7 @@ $(OUTPUT).elf	:	$(OFILES)
 
 %.o : %.cpp
 	@echo $(notdir $<)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 %.o : %.bin
 	@echo $(notdir $<)

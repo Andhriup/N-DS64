@@ -7,12 +7,17 @@ void __libnds_mpu_setup(void) {}
 void __libnds_exit(void) {}
 void initSystem(void) {
     cpuStartTiming(0); 
+}
+static volatile int frame = 0;
+void Vblank() {
+    frame++;                 // se incrementa cada VBLANK
+}
 int main(void) {
     consoleDemoInit();
     printf("\n\n   N-DS64 Proyecto DSi\n");
     printf("   -------------------\n");
         printf("   Hardware: Nintendo DSi\n");
-        printf("   Estado:   133MHz / 16MB RAM\n");
+        printf("   Estado:   133MHz / 16MB RAM\n", frame);
 
     printf("\n\n   Presiona START para salir.");
 
@@ -24,5 +29,4 @@ int main(void) {
     }
 
     return 0;
-}
 }
