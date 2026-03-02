@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Debug
         run: |
-          find DEVKITPRO -maxdepth 5 -not -path '*/.*'
+          find $DEVKITPRO -maxdepth 4 -not -path '*/.*'
 
       - name: Compile project
         run: |
