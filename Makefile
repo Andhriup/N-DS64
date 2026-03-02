@@ -32,7 +32,7 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 
 export OUTPUT    :=    $(CURDIR)/$(TARGET)
 
-export VPATH    :=    $(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) $(CURDIR) $(CURDIR)/$(subst /,,$(dir $(ICON)))\
+export VPATH    :=    $(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) $(CURDIR) $(CURDIR)/$(subst /,,$(dir $(ICON)))
 export DEPSDIR    :=    $(CURDIR)/$(BUILD)
 
 CFILES      :=    $(foreach dir,$(SOURCES),$(notdir $(wildcard $(CURDIR)/$(dir)/*.c)))
@@ -52,7 +52,7 @@ export OFILES   := $(BINFILES)\
                    $(PNGFILES:.png=.o)\
                    $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE := $(foreach dir,../$(INCLUDES)) -I$(dir)
+export INCLUDE := $(foreach dir,../$(INCLUDES),$(CURDIR)/$(dir))
            -I$(LIBNDS)/include \
            -I$(CALICO)/include \
            -I$(BUILD)
@@ -111,7 +111,7 @@ $(GAME_ICON) : $(notdir $(ICON))
 
 %.o : %.bin
 	@echo $(notdir $<)
-	@bin2s $< | $(AS) $(ASFLAGS) -o $
+	@bin2s $< | $(AS) $(ASFLAGS) -o $@
 
 %.s %.h : %.png %.grit
 
