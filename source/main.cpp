@@ -13,12 +13,11 @@ extern "C" {
     }
 }
 static volatile int frame = 0;
-irqSet(IRQ_VBLANK, Vblank);
-irqEnable(IRQ_VBLANK);
 void Vblank() {
     frame++;
 }
 int main(void) {
+    irqSet(IRQ_VBLANK, Vblank);
     consoleDemoInit();
     printf("N-DS64 Proyecto DSi");
     printf("   -------------------");
