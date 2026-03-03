@@ -9,7 +9,9 @@ extern "C" {
     void __libnds_mpu_setup(void) { }
     void __libnds_exit(void) { }
     void initSystem(void) {
+      irqInit();
       irqEnable(IRQ_VBLANK);
+      irqSet(IRQ_VBLANK, Vblank);
     }
 }
 
@@ -20,7 +22,6 @@ void Vblank() {
 }
 
 int main(void) {
-    irqSet(IRQ_VBLANK, Vblank);
     consoleDemoInit();
 
     while(1) {
