@@ -42,8 +42,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           files: |
-          **/*.nds
-          funciones_limpias.txt
+           **/*.nds
+           funciones_limpias.txt
           tag_name: latest
           name: "N-DS64 Ultima Compilación"
           body: "nothing"
