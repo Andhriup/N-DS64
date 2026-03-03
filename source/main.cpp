@@ -23,7 +23,7 @@ int main(void) {
   initSystem();
   videoSetMode(MODE_0_2D);
   videoSetModeSub(MODE_0_2D);
-  vramDefault(VRAM_A_MAIN_BG);
+  vramDefault();
     consoleDemoInit();
     consoleDebugInit(DebugDevice_CONSOLE);
 
