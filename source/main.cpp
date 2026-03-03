@@ -8,7 +8,7 @@ extern "C" {
     void __libnds_mpu_setup(void) { }
     void __libnds_exit(void) { }
     void initSystem(void) {
-        irqEnable(IRQ_VBLANK);
+        irqInit();
     }
 }
 
