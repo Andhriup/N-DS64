@@ -52,7 +52,7 @@ export OFILES   := $(BINFILES)\
                    $(PNGFILES:.png=.o)\
                    $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
 
-export INCLUDE := $(foreach dir,$(INCLUDES),$(CURDIR)/$(dir)) \
+export INCLUDE := $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
            -I$(LIBNDS)/include \
            -I$(CALICO)/include \
            -I$(BUILD)
@@ -90,7 +90,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf $(GAME_ICON)
-	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf -b icon.bmp "N-DS64;Proyecto DSi;AI"
+	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf -b $(GAME_ICON) "N-DS64;Proyecto DSi;AI"
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 
