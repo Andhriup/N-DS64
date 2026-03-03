@@ -14,7 +14,6 @@ extern "C" {
     void __libnds_exit(void) { }
     void initSystem(void) {
       powerOn(POWER_ALL);
-      irqInit();
       irqEnable(IRQ_VBLANK);
       irqSet(IRQ_VBLANK, Vblank);
     }
@@ -24,6 +23,7 @@ int main(void) {
   initSystem();
   videoSetMode(MODE_0_2D);
   videoSetModeSub(MODE_0_2D);
+  vramDefault(VRAM_A_MAIN_BG);
     consoleDemoInit();
     consoleDebugInit(DebugDevice_CONSOLE);
 
