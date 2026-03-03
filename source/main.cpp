@@ -1,5 +1,6 @@
 #include <nds.h>
 #include <stdio.h>
+#include <calico.h>
 
 extern "C" {
     int __dsimode       = 0;
@@ -8,6 +9,7 @@ extern "C" {
     void __libnds_mpu_setup(void) { }
     void __libnds_exit(void) { }
     void initSystem(void) {
+      irqEnable();
     }
 }
 

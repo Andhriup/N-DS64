@@ -16,17 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Debug
-        run: |
-          arm-none-eabi-gcc -E -DARM9 -D__NDS__ \
-          -I/opt/devkitpro/libgba/include \
-          -I/opt/devkitpro/devkitARM/arm-none-eabi/include \
-          /opt/devkitpro/calico/include/calico.h | \
-          grep -v '^#' | \
-          grep -E '^[a-zA-Z_][a-zA-Z0-9_* ]+[ ]+[a-zA-Z_][a-zA-Z0-9_]+\s*\(' | \
-          sed 's/^[ \t]*//' | \
-          sort -u > funciones_limpias.txt
-
       - name: Compile project
         run: |
           export PATH=$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH
@@ -47,7 +36,6 @@ jobs:
         with:
           files: |
            **/*.nds
-           funciones_limpias.txt
           tag_name: latest
           name: "N-DS64 Ultima Compilación"
           body: "nothing"
