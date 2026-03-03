@@ -7,13 +7,14 @@ void Vblank() {
     frame++;
 }
 extern "C" {
-    int __dsimode       = 0;
+    int __dsimode       = 1;
     unsigned int __secure_area__ = 0;
 
     void __libnds_mpu_setup(void) { }
     void __libnds_exit(void) { }
     void initSystem(void) {
       powerOn(POWER_ALL);
+      irqInit();
       irqEnable(IRQ_VBLANK);
       irqSet(IRQ_VBLANK, Vblank);
     }
