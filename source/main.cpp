@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <calico.h>
 
+static volatile int frame = 0;
+void Vblank() {
+    frame++;
+}
 extern "C" {
     int __dsimode       = 0;
     unsigned int __secure_area__ = 0;
@@ -15,13 +19,8 @@ extern "C" {
     }
 }
 
-static volatile int frame = 0;
-
-void Vblank() {
-    frame++;
-}
-
 int main(void) {
+  initSystem();
     consoleDemoInit();
 
     while(1) {
