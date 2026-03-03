@@ -90,7 +90,7 @@ else
 DEPENDS        :=        $(OFILES:.o=.d)
 
 $(OUTPUT).nds	:	$(OUTPUT).elf $(GAME_ICON)
-	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf -b $(GAME_ICON) "N-DS64;Proyecto DSi;AI"
+	ndstool -c $@ -9 $< -7 $(CALICO)/bin/ds7_bobtail.elf -b $(ICON) "N-DS64;Proyecto DSi;AI"
 
 $(OUTPUT).elf	:	$(OFILES)
 	@echo Enlazando $(notdir $@) 

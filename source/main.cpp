@@ -2,8 +2,7 @@
 #include <stdio.h>
 
 extern "C" {
-    int __dsimode       = 1;
-    // __secure_area__ debe ser unsigned int para evitar warnings de signo
+    int __dsimode       = 0;
     unsigned int __secure_area__ = 0;
 
     void __libnds_mpu_setup(void) { }
@@ -20,10 +19,8 @@ void Vblank() {
 }
 
 int main(void) {
-    // Configurar la interrupción ANTES de inicializar la consola
     irqSet(IRQ_VBLANK, Vblank);
-    
-    // Inicializar el motor de video y la consola
+    irqEnable(IRQ_VBLANK);
     consoleDemoInit();
 
     while(1) {
