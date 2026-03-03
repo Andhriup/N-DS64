@@ -21,10 +21,12 @@ extern "C" {
 
 int main(void) {
   initSystem();
+  videoSetMode(MODE_0_2D);
+  videoSetModeSub(MODE_0_2D);
     consoleDemoInit();
+    consoleDebugInit(DebugDevice_CONSOLE);
 
     while(1) {
-        // Limpiar pantalla y mover el cursor al inicio (evita que el texto se acumule)
         printf("\x1b[2J"); 
         printf("N-DS64 Proyecto DSi\n");
         printf("-------------------\n");
