@@ -12,7 +12,7 @@ INCLUDES   := include
 DATA   := data
 GRAPHICS   := gfx
 CALICO   := $(DEVKITPRO)/calico
-ICON := icon
+ICON := icon.png
 
 ARCH    :=    -march=armv5te -mtune=arm946e-s -mthumb -D__NDS__ -D__NDSi__
 
