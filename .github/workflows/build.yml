@@ -17,7 +17,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Debug
         run: |
-          find $DEVKITPRO -maxdepth 4 -not -path '*/.*'
+          gcc -E archivo.c | grep -v '^#' | grep -E '^[a-zA-Z_][a-zA-Z0-9_* ]+[ ]+[a-zA-Z_][a-zA-Z0-9_]+\s*\(' | sed 's/^[ \t]*//' | sort -u > funciones_limpias.txt
+
 
       - name: Compile project
         run: |
@@ -37,7 +38,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/main'
         with:
-          files: "**/*.nds"
+          files: "**/*.nds" "funciones_limpias.txt"
           tag_name: latest
           name: "N-DS64 Ultima Compilación"
           body: "nothing"
