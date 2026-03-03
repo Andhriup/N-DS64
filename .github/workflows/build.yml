@@ -41,7 +41,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/main'
         with:
-          files: "**/*.nds" "funciones_limpias.txt"
+          files: |
+          **/*.nds
+          funciones_limpias.txt
           tag_name: latest
           name: "N-DS64 Ultima Compilación"
           body: "nothing"
