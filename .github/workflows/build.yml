@@ -38,7 +38,8 @@ jobs:
            **/*.nds
           tag_name: latest
           name: "N-DS64 Ultima Compilación"
-          body: "nothing"
+          generate_release_notes: true
+          body: ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
