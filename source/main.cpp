@@ -25,7 +25,6 @@ int main(void) {
   videoSetModeSub(MODE_0_2D);
   vramDefault();
     consoleDemoInit();
-    consoleDebugInit(DebugDevice_CONSOLE);
 
     while(1) {
         printf("\x1b[2J"); 
